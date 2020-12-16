@@ -12,19 +12,44 @@ function nav() {
 const pokedex = document.getElementById('pokedex');
 
 const fetchPokemon = () => {
-	const promises = [];
-	for (let i = 1; i <= 150; i++) {
-		const url = `https://pokeapi.co/api/v2/pokemon/${i}`;
-		promises.push(fetch(url).then((res) => res.json()));
-	}
-	Promise.all(promises).then((results) => {
-		const pokemon = results.map((result) => ({
-			name: result.name,
-			image: result.sprites['front_default'],
-			type: result.types.map((type) => type.type.name).join(', '),
-			id: result.id
-		}));
-		displayPokemon(pokemon);
+	var url = `https://pokeapi.co/api/v2/pokemon`;
+	var counts = fetch(url).then((res) => res.json());
+
+	Promise.all([counts]).then((count) => {
+		var total = 0;
+		total = count[0].count;
+		const promises = [];
+		const url2 = `https://pokeapi.co/api/v2/pokemon?limit=`+total;
+		promises.push(fetch(url2).then((res) => res.json()));
+		Promise.all(promises).then((results) => {
+			var res = results[0]['results'];
+			const promises2 = [];
+			var aux = 0;
+			while(aux<total) {
+				for (var i = aux; i < aux+100 && i<total; i++) {
+					console.log(res[i].url)
+					promises2.push(fetch(res[i].url).then((res) => res.json()));
+				};
+				Promise.all(promises2).then((results) => {
+					var res = results.filter(function (val) {
+						var ret = true;
+						ret &= val.name != null;
+						ret &= val.sprites['front_default'] != null;
+						ret &= val.types.map((type) => type.type.name).join(', ') != null;
+						ret &= val.id != null;
+						return ret;
+					});
+					const pokemon = res.map((result) => ({
+						name: result.name,
+						image: result.sprites['front_default'],
+						type: result.types.map((type) => type.type.name).join(', '),
+						id: result.id
+					}));
+					displayPokemon(pokemon);
+				});
+				aux+=100;
+			}     
+		});
 	});
 };
 

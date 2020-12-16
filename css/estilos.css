@@ -48,7 +48,7 @@ h1 {
 #pokedex {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(23%, 20%));
-    grid-gap: 0.5%;
+    grid-gap: 10px;
     padding-inline-start: 0%;
 }
 
