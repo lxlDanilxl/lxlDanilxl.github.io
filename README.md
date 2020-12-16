@@ -4,13 +4,12 @@ Repositorio de la práctica 3 de IPM, curso 20/21.
 
 ## Miembros del grupo
 
-  * Nombre:
-  * Apellidos:
-  * Login UDC:
-  * Login Github:
+  * Nombre: Rogelio Daniel
+  * Apellidos: Franco Martínez
+  * Login UDC: r.d.franco
+  * Login Github: lxlDanilxl
   
-  * Nombre:
-  * Apellidos:
-  * Login UDC:
-  * Login Github:
-
+  * Nombre: Javier
+  * Apellidos: Taboada Núñez
+  * Login UDC: javier.taboada.nunez
+  * Login Github: javierfic
