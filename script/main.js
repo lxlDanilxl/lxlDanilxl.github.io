@@ -13,14 +13,18 @@ const pokedex = document.getElementById('pokedex');
 
 const fetchPokemon = () => {
 	var url = `https://pokeapi.co/api/v2/pokemon`;
-	var counts = fetch(url).then((res) => res.json());
+	var counts = fetch(url).then((res) => res.json()).catch(function() {
+        	pokedex.innerHTML = "<h1> API ERROR </h1>";
+    	});
 
 	Promise.all([counts]).then((count) => {
 		var total = 0;
 		total = count[0].count;
 		const promises = [];
 		const url2 = `https://pokeapi.co/api/v2/pokemon?limit=`+total;
-		promises.push(fetch(url2).then((res) => res.json()));
+		promises.push(fetch(url2).then((res) => res.json()).catch(function() {
+        	pokedex.innerHTML = "<h1> API ERROR </h1>";
+    	}));
 		Promise.all(promises).then((results) => {
 			var res = results[0]['results'];
 			const promises2 = [];
@@ -61,7 +65,9 @@ function generation(gen) {
 		if(gendiv.hidden) {
 			var url = `https://pokeapi.co/api/v2/generation`;
 			var gens = [];
-			var generations = fetch(url).then((res) => res.json());
+			var generations = fetch(url).then((res) => res.json()).catch(function() {
+	        	pokedex.innerHTML = "<h1> API ERROR </h1>";
+	    	});
 			//console.log(generations);
 			Promise.all([generations]).then((results) => {
 				gens = results[0].results;  
@@ -75,7 +81,9 @@ function generation(gen) {
 		gendiv.hidden = !gendiv.hidden;
 	} else {
 		var url = `https://pokeapi.co/api/v2/generation/`+gen;
-		var data = fetch(url).then((res) => res.json());
+		var data = fetch(url).then((res) => res.json()).catch(function() {
+        	pokedex.innerHTML = "<h1> API ERROR </h1>";
+    	});
 		Promise.all([data]).then((results) => {
 			gens = results[0].pokemon_species;
 			const promises = [];
@@ -86,7 +94,9 @@ function generation(gen) {
 			index.sort(function(a, b){return a-b})
 			for (var i = 0; i < index.length; i++) {
 				const url = `https://pokeapi.co/api/v2/pokemon/`+index[i];
-				promises.push(fetch(url).then((res) => res.json()));
+				promises.push(fetch(url).then((res) => res.json()).catch(function() {
+		        	pokedex.innerHTML = "<h1> API ERROR </h1>";
+		    	}));
 			};
 			Promise.all(promises).then((results) => {
 				var res = results.filter(function (val) {
@@ -125,14 +135,18 @@ function pType(type) {
 		if(typediv.hidden) {
 			var url = `https://pokeapi.co/api/v2/type`;
 			var gens = [];
-			var types = fetch(url).then((res) => res.json());
+			var types = fetch(url).then((res) => res.json()).catch(function() {
+	        	pokedex.innerHTML = "<h1> API ERROR </h1>";
+	    	});
 			console.log(types);
 			Promise.all([types]).then((results) => {
 				gens = results[0].results;  
 				typediv.innerHTML="";
 				for (var i = 0; i < gens.length; i++) {
 					var url2 = gens[i].url;
-					var typeInfo = fetch(url2).then((res) => res.json())
+					var typeInfo = fetch(url2).then((res) => res.json()).catch(function() {
+			        	pokedex.innerHTML = "<h1> API ERROR </h1>";
+			    	})
 					Promise.all([typeInfo]).then((results) => {
 						if (results[0].pokemon.length > 0) {
 							var namesData = results[0].names;
@@ -154,7 +168,9 @@ function pType(type) {
 		typediv.hidden = !typediv.hidden;
 	} else {
 		var url = `https://pokeapi.co/api/v2/type/`+type;
-		var data = fetch(url).then((res) => res.json());
+		var data = fetch(url).then((res) => res.json()).catch(function() {
+        	pokedex.innerHTML = "<h1> API ERROR </h1>";
+    	});
 		Promise.all([data]).then((results) => {
 			gens = results[0].pokemon;
 			console.log(gens);
@@ -166,7 +182,9 @@ function pType(type) {
 			index.sort(function(a, b){return a-b});
 			for (var i = 0; i < index.length; i++) {
 				const url = `https://pokeapi.co/api/v2/pokemon/`+index[i];
-				promises.push(fetch(url).then((res) => res.json()));
+				promises.push(fetch(url).then((res) => res.json()).catch(function() {
+		        	pokedex.innerHTML = "<h1> API ERROR </h1>";
+		    	}));
 			};
 			Promise.all(promises).then((results) => {
 				var res = results.filter(function (val) {
