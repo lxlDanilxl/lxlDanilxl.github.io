@@ -47,8 +47,8 @@ h1 {
 
 #pokedex {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(23%, 20%));
-    grid-gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(25%, 21%));
+    grid-gap: 0.025%;
     padding-inline-start: 0%;
 }
 
@@ -71,11 +71,11 @@ h1 {
     margin-top: 0%;
     color: #666;
     font-weight: lighter;
-    font-size: 200%;
+    font-size: 250%;
 }
 
 .card-image {
-    height: 40%;
+    height: 50%;
 }
 
 @keyframes bounce {
