@@ -116,14 +116,7 @@ function generation(gen) {
 				displayPokemon(pokemon);
 			});          
 		});
-		//gendiv.hidden = true;
-		typediv.hidden = true;
-		var list = document.getElementsByClassName("active");
-		for (let item of list) {
-		    item.classList.remove("active");
-		}
-		document.getElementById("gen"+gen).classList.add("active");
-		nav();
+		gendiv.hidden = true;
 	};
 };
 
@@ -204,15 +197,7 @@ function pType(type) {
 				displayPokemon(pokemon);
 			});          
 		});
-		//typediv.hidden = false;
-		gendiv.hidden = true;
-		
-		var list = document.getElementsByClassName("active");
-		for (let item of list) {
-		    item.classList.remove("active");
-		}
-		document.getElementById("type"+type).classList.add("active");
-		nav();
+		typediv.hidden = true;
 	};
 };
 
